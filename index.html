@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E.S.W</title>
+    <script type="module" src="./src/js/earth3D.js"></script>
+    <!-- <script type="module" src="./src/js/earth3D_2.js"></script> -->
+    <script type="module" src="./src/js/addStarsLanding.js"></script>
+    <script type="module" src="./src/js/controller.js"></script>
+
+    <link rel="stylesheet" href="./src/css/tailwind.css">
+    <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main-loader z-50"></div>
+    <nav class="z-30 bg-gray-800">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+                    <!-- Mobile menu button-->
+                    <button type="button"
+                        class="menuBtn relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+                        aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="absolute -inset-0.5"></span>
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div id="iconContainer" class="flex flex-shrink-0 items-center">
+                        <canvas class="earth2 h-10 w-auto"></canvas>
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                            <a href="#Evaporation" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                                aria-current="page">Evaporation</a>
+                            <a href="#Runoff"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Runoff</a>
+                            <a href="#precipitation-patterns"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">precipitation-patterns</a>
+                            <a href="#Overall"
+                                class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Overall</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile menu, show/hide based on menu state. -->
+        <div class="mobileMenu hidden sm:hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                <a href="#Evaporation"
+                    class="hover:bg-gray-700 text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
+                    aria-current="page">Evaporation</a>
+                <a href="#Runoff"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Runoff</a>
+                <a href="#precipitation-patterns"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">precipitation-patterns</a>
+                <a href="#"
+                    class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Calendar</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="overflow-hidden header flex relative h-screen bg-black  flex-col-reverse md:flex-row">
+        <div class="landing relative w-auto md:w-full flex flex-col justify-center px-8 pb-10">
+            <div class="starsBG overflow-hidden absolute top-0 left-0 h-full w-full">
+                <canvas class="stars"></canvas>
+            </div>
+
+            <h1 class="text-white capitalize text-5xl mb-8 font-exo-2">Everything starts with water</h1>
+            <p class="text-gray-400 mb-8">The complete path of water across the Earth system is known as the
+                hydrological
+                cycle or the water cycle.</p>
+            <div class="link">
+                <a href="#"
+                    class="text-white bg-green-600 hover:bg-green-800 duration-200 inline-block px-8 py-4 rounded-full">Learn
+                    More</a>
+            </div>
+        </div>
+        <div class="earthContainer px-10 w-1/2" id="canvasContainer">
+            <canvas class="earth"></canvas>
+        </div>
+    </div>
+
+    <main class="z-0 sectionsContainer">
+
+        <section class="sec" id="Evaporation">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Evaporation.</h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Water from oceans, rivers, lakes, and the
+                                Earth's surface is heated by the sun and turns into
+                                water vapor, rising into the atmosphere
+                                As water vapor rises, it cools and condenses into tiny water droplets, forming clouds.
+                                When cloud droplets combine and become too heavy, they fall to the Earth's surface as
+                                precipitation, which can be rain, snow, sleet, or hail.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/Evaporation-2.jpg" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="Runoff">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Runoff.</h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Precipitation that doesn't infiltrate the
+                                ground runs off into rivers, streams, and eventually into
+                                larger bodies of water.
+                                Some precipitation soaks into the ground, becoming groundwater.
+                                Water that infiltrates the ground can be stored in underground aquifers for long periods
+                                or
+                                eventually resurface through springs and seeps.
+                                Plants absorb water from the soil and release it into the atmosphere through a process
+                                called
+                                transpiration.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/Runiffpng.png" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="precipitation-patterns">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">precipitation patterns.
+                            </h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Climate change can lead to shifts in when
+                                and where precipitation occurs. Some areas may experience more intense rainfall, while
+                                others may suffer from prolonged droughts.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/precipitation.jpg" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="temperature">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Changes in temperature.
+                            </h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Warmer temperatures can increase evaporation
+                                rates, potentially leading to greater water loss from lakes, rivers, and soil.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/Changes in temperature.png" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="weather-events">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Increased extreme
+                                weather events.
+                            </h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Climate change can lead to more frequent and
+                                severe storms and hurricanes,
+                                which can result in flooding and damage to water infrastructure.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/Increased.jpg" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="Sea-level">
+
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Sea-level rise.
+                            </h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">Rising sea levels can lead to saltwater
+                                intrusion into freshwater sources in coastal areas,
+                                reducing the availability of drinkable water.</p>
+                        </div>
+                        <dl class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:pt-2">
+                            <img class="imgSec" src="src/imgs/Sea-level.jpg" alt="">
+                        </dl>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="sec" id="Overall">
+            <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
+                <div class="mx-auto max-w-7xl px-6 lg:px-8">
+                    <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-2">
+                        <div class="max-w-xl lg:max-w-lg">
+                            <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Overall
+                            </h2>
+                            <p class="mt-4 text-lg leading-8 text-gray-300">climate change is exacerbating water
+                                scarcity and impacting the distribution and quality of freshwater
+                                resources, making it a critical issue for global water management and conservation
+                                efforts</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 top-0 -z-10 -translate-x-1/2 blur-3xl xl:-top-6" aria-hidden="true">
+                    <div class="aspect-[1155/678] w-[72.1875rem] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30"
+                        style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)">
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </main>
+</body>
+
+</html>
