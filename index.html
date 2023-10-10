@@ -15,10 +15,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <div class="main-loader z-50"></div>
+    <button class="scrollToTopBtn hidden z-10 w-10 h-10 bg-gray-800 text-black rounded-full fixed bottom-6 right-6"><i
+            class="fa-solid fa-arrow-up"></i></button>
     <nav class="z-30 bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div class="relative flex h-16 items-center justify-between">
@@ -47,7 +52,8 @@
                     <div class="hidden sm:ml-6 sm:block">
                         <div class="flex space-x-4">
                             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                            <a href="#Evaporation" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+                            <a href="#Evaporation"
+                                class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
                                 aria-current="page">Evaporation</a>
                             <a href="#Runoff"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Runoff</a>
@@ -86,15 +92,16 @@
 
             <h1 class="text-white capitalize text-5xl mb-8 font-exo-2">Everything starts with water</h1>
             <p class="text-gray-400 mb-8">The complete path of water across the Earth system is known as the
-                hydrological
-                cycle or the water cycle.</p>
+                hydrological cycle or the water cycle. It involves the continuous movement of water through various
+                stages, including evaporation, condensation, precipitation, runoff, and groundwater recharge. Here's a
+                brief overview.</p>
             <div class="link">
                 <a href="#"
                     class="text-white bg-green-600 hover:bg-green-800 duration-200 inline-block px-8 py-4 rounded-full">Learn
                     More</a>
             </div>
         </div>
-        <div class="earthContainer px-10 w-1/2" id="canvasContainer">
+        <div class="earthContainer px-12 w-1/2" id="canvasContainer">
             <canvas class="earth"></canvas>
         </div>
     </div>

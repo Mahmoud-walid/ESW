@@ -1,23 +1,45 @@
-import { callback } from "./model";
+import { callback } from "./navBar";
+import scrollToUp from "./scrollToUp";
 
-window.addEventListener("load", () => {
-  const mainLoader = document.querySelector(".main-loader");
-  mainLoader.classList.add("main-loader-hidden");
-
-  mainLoader.addEventListener("transitionend", () => {
-    mainLoader.remove();
+const controlMainLoader = function () {
+  window.addEventListener("load", () => {
+    const mainLoader = document.querySelector(".main-loader");
+    mainLoader.classList.add("main-loader-hidden");
+    mainLoader.addEventListener("transitionend", () => {
+      mainLoader.remove();
+    });
   });
-});
+};
 
-document.querySelector(".menuBtn").addEventListener("click", () => {
-  document.querySelector(".mobileMenu").classList.toggle("hidden");
-});
+const controlMenuMobileBtn = function () {
+  document.querySelector(".menuBtn").addEventListener("click", () => {
+    document.querySelector(".mobileMenu").classList.toggle("hidden");
+  });
+};
 
-const header = document.querySelector(".header");
+const controlHeader = function () {
+  const header = document.querySelector(".header");
+  const navObserver = new IntersectionObserver(callback, {
+    root: null,
+    threshold: 0,
+  });
+  navObserver.observe(header);
+};
 
-const navObserver = new IntersectionObserver(callback, {
-  root: null,
-  threshold: 0,
-});
+const controlScrollToUp = function () {
+  const header = document.querySelector(".header");
+  const navObserver = new IntersectionObserver(callback, {
+    root: null,
+    threshold: 0,
+  });
+  navObserver.observe(header);
+  scrollToUp.init();
+};
 
-navObserver.observe(header);
+const init = () => {
+  controlMenuMobileBtn();
+  controlMainLoader();
+  controlHeader();
+  controlScrollToUp();
+};
+init();
