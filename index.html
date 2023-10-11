@@ -22,7 +22,7 @@
 
 <body>
     <div class="main-loader z-50"></div>
-    <button class="scrollToTopBtn hidden z-10 w-10 h-10 bg-gray-800 text-black rounded-full fixed bottom-6 right-6"><i
+    <button class="scrollToTopBtn animated-element-fadeInUp hidden z-10 w-10 h-10 bg-gray-800 text-black rounded-full fixed bottom-6 right-6"><i
             class="fa-solid fa-arrow-up"></i></button>
     <nav class="z-30 bg-gray-800">
         <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -50,11 +50,10 @@
                         <canvas class="earth2 h-10 w-auto"></canvas>
                     </div>
                     <div class="hidden sm:ml-6 sm:block">
-                        <div class="flex space-x-4">
-                            <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
+                        <div class="navContent flex space-x-4">
                             <a href="#Evaporation"
-                                class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-                                aria-current="page">Evaporation</a>
+                                class="hover:bg-gray-700 hover:text-white text-gray-300 rounded-md px-3 py-2 text-sm font-medium"
+                                >Evaporation</a>
                             <a href="#Runoff"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Runoff</a>
                             <a href="#precipitation-patterns"
@@ -70,7 +69,6 @@
         <!-- Mobile menu, show/hide based on menu state. -->
         <div class="mobileMenu hidden sm:hidden" id="mobile-menu">
             <div class="space-y-1 px-2 pb-3 pt-2">
-                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
                 <a href="#Evaporation"
                     class="hover:bg-gray-700 text-gray-300 hover:text-white block rounded-md px-3 py-2 text-base font-medium"
                     aria-current="page">Evaporation</a>

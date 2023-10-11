@@ -1,4 +1,4 @@
-import { callback } from "./navBar";
+import { callback, navBarActive } from "./navBar";
 import scrollToUp from "./scrollToUp";
 
 const controlMainLoader = function () {
@@ -19,11 +19,21 @@ const controlMenuMobileBtn = function () {
 
 const controlHeader = function () {
   const header = document.querySelector(".header");
+  const navHeight = document
+    .querySelector("nav")
+    .getBoundingClientRect().height;
   const navObserver = new IntersectionObserver(callback, {
     root: null,
     threshold: 0,
+    rootMargin: `-${navHeight + 40}px`,
   });
   navObserver.observe(header);
+
+  ["hashchange", "load"].forEach((event) =>
+    window.addEventListener(event, () => {
+      navBarActive();
+    })
+  );
 };
 
 const controlScrollToUp = function () {
