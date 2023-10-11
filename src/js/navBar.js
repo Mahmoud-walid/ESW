@@ -21,9 +21,9 @@ export const navBarActive = function () {
   const hashUrl = window.location.hash;
 
   const links = navBarContent.querySelectorAll("a");
-
   links.forEach((link) => {
-    link.classList.remove("bg-gray-900");
+    link.classList.add("text-gray-300");
+    link.classList.remove("bg-gray-900", "text-white");
   });
 
   const activeLink = navBarContent.querySelector(`a[href="${hashUrl}"]`);

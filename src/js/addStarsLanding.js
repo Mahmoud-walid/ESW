@@ -24,7 +24,7 @@ const starsGeometry = new THREE.BufferGeometry();
 const starsMaterial = new THREE.PointsMaterial({ color: 0xffffff, size: 0.02 });
 
 const starsVertices = [];
-for (let i = 0; i < 2000; i++) {
+for (let i = 0; i < 3000; i++) {
   const x = (Math.random() - 0.5) * 2000;
   const y = (Math.random() - 0.5) * 2000;
   const z = -Math.random() * 3000;

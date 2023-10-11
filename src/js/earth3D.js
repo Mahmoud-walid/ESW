@@ -21,6 +21,7 @@ const camera = new THREE.PerspectiveCamera(
 const renderer = new THREE.WebGLRenderer({
   antialias: true,
   canvas: document.querySelector("canvas.earth"),
+  alpha: true,
 });
 
 renderer.setSize(canvasContainer.offsetWidth, canvasContainer.offsetHeight);
@@ -63,7 +64,7 @@ const starMaterial = new THREE.PointsMaterial({
 });
 
 const starVertices = [];
-for (let i = 0; i < 2000; i++) {
+for (let i = 0; i < 3000; i++) {
   const x = (Math.random() - 0.5) * 2000;
   const y = (Math.random() - 0.5) * 2000;
   const z = -Math.random() * 3000;
@@ -77,7 +78,6 @@ starGeometry.setAttribute(
 
 const stars = new THREE.Points(starGeometry, starMaterial);
 scene.add(stars);
-
 
 camera.position.z = 15;
 
