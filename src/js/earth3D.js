@@ -90,11 +90,6 @@ const animate = function () {
   requestAnimationFrame(animate);
   renderer.render(scene, camera);
   sphere.rotation.y += 0.003;
-  gsap.to(group.rotation, {
-    x: -mouse.y * 0.5,
-    y: mouse.x * 0.5,
-    duration: 2,
-  });
 };
 
 animate();
@@ -103,4 +98,9 @@ addEventListener("mousemove", () => {
   mouse.x = (event.clientX / innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / innerHeight) * 2 + 1;
   // console.log(mouse);
+  gsap.to(group.rotation, {
+    x: -mouse.y * 0.5,
+    y: mouse.x * 0.5,
+    duration: 2,
+  });
 });
